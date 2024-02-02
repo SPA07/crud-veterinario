@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Error from "./Error";
 
-function Form({ pacientes, setPacientes }) {
+function Form({ pacientes, setPacientes, paciente }) {
   const [name, setName] = useState("");
   const [propietario, setPropietario] = useState("");
   const [email, setEmail] = useState("");
@@ -9,11 +9,21 @@ function Form({ pacientes, setPacientes }) {
   const [sintomas, setSintomas] = useState("");
   const [error, setError] = useState(false);
 
+  useEffect(() => {
+    if (Object.keys(paciente).length > 0) {
+      setName(paciente.name)
+      setPropietario(paciente.propietario)
+      setEmail(paciente.email)
+      setAlta(paciente.alta)
+      setSintomas(paciente.sintomas)
+    }
+  }, [paciente])
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if ([name, propietario, email, alta, sintomas].includes("")) {
-      console.log("Hay al menos un campo vacio");
+      // console.log("Hay al menos un campo vacio");
       setError(true);
 
       return;
@@ -22,7 +32,7 @@ function Form({ pacientes, setPacientes }) {
     setError(false);
 
     const generarID = () => {
-      const random = Math.random.toString(36)
+      const random = Math.random().toString(36).substr(2);
       const fecha = Date.now().toString(36)
 
       return random + fecha
@@ -33,12 +43,20 @@ function Form({ pacientes, setPacientes }) {
       propietario,
       email,
       alta,
-      sintomas,
-      id: generarID()
+      sintomas
     };
 
-    setPacientes([...pacientes, pacientObject]);
+    if (paciente.id) {
+      pacientObject.id = paciente.id
+      const pacientUpdated = pacientes.map(pacientState => pacientState.id === paciente.id ? pacientObject : pacientState)
+      setPacientes(pacientUpdated)
 
+    } else {
+      pacientObject.id = generarID()
+      setPacientes([...pacientes, pacientObject])
+    }
+
+    // Reiniciar el formulario
     setName("");
     setPropietario("");
     setEmail("");
@@ -148,7 +166,7 @@ function Form({ pacientes, setPacientes }) {
         <input
           type="submit"
           className="bg-indigo-500 w-full p-3 text-white uppercase font-bold hover:bg-indigo-600 cursor-pointer transition-colors mb-3"
-          value="Agregar paciente"
+          value={paciente.id ? 'Editar paciente' : 'Agregar paciente'}
         />
       </form>
     </div>
