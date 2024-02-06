@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import Pacient from "./Pacient";
 
-function PacientsList({ pacientes, setPaciente }) {
+function PacientsList({ pacientes, setPaciente, deletePacient }) {
 
   return (
     <div className="md:w-1/2 lg:w-3/5 md:h-screen overflow-y-scroll mt-3">
@@ -17,6 +18,7 @@ function PacientsList({ pacientes, setPaciente }) {
               key={paciente.id}
               paciente={paciente}
               setPaciente={setPaciente}
+              deletePacient={deletePacient}
             />
           ))}
         </>) : (

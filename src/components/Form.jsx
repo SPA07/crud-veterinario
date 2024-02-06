@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import Error from "./Error";
 
-function Form({ pacientes, setPacientes, paciente }) {
+function Form({ pacientes, setPacientes, paciente, setPaciente }) {
   const [name, setName] = useState("");
   const [propietario, setPropietario] = useState("");
   const [email, setEmail] = useState("");
@@ -50,6 +51,7 @@ function Form({ pacientes, setPacientes, paciente }) {
       pacientObject.id = paciente.id
       const pacientUpdated = pacientes.map(pacientState => pacientState.id === paciente.id ? pacientObject : pacientState)
       setPacientes(pacientUpdated)
+      setPaciente({})
 
     } else {
       pacientObject.id = generarID()
