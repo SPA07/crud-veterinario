@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 # citas-veterinario
+https://65c1e11740b2e44c93f00453--zingy-cajeta-3c3b5f.netlify.app/
 =======
 # React + Vite
 
@@ -10,5 +11,4 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 >>>>>>> 3e96989 (first commit)
-# crud-veterinario
 # crud-veterinario
